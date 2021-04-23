@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+	<category label="30901">
+		<setting label="30902" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, install_or_upgrade_web_driver)"/>
+		<setting label="30903" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, uninstall_web_driver)"/>
+	</category>
+</settings>

@@ -1,0 +1,36 @@
+# Kodi Media Center language file
+# Addon Name: cwebdriverinstaller-eral-test
+# Addon id: script.module.cwebdriverinstaller-eral-test
+# Addon Provider: ERAL
+msgid ""
+msgstr ""
+"Project-Id-Version: script.module.cwebdriverinstaller-eral-test\n"
+"Report-Msgid-Bugs-To: <UNDONE: >\n"
+"POT-Creation-Date: 2021-04-23 23:00+0900\n"
+"PO-Revision-Date: 2021-04-23 23:00+0900\n"
+"Last-Translator: ERAL\n"
+"Language-Team: Japanese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+# strings 30000 thru 30999 reserved for plugins and plugin settings
+msgctxt "#30901"
+msgid "Expert"
+msgstr "エキスパート"
+
+msgctxt "#30902"
+msgid "Install or upgrade the web driver"
+msgstr "Webドライバのインストール・アップグレード"
+
+msgctxt "#30903"
+msgid "Uninstall the web driver"
+msgstr "Webドライバのアンインストール"
+
+# strings 31000 thru 31999 reserved for skins
+# strings 32000 thru 32999 reserved for scripts
+# strings 33000 thru 33999 reserved for common strings used in add-ons
+
