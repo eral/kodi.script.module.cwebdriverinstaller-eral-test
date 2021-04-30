@@ -62,3 +62,24 @@ class CWebDriverInstallerHelper():
         else:
             message = 'ReturnCode: ' + unicode(returncode) + '\n\n' + returnmessage
             dialog.ok(title, message)
+
+    @ staticmethod
+    def status():
+        # type: () -> None
+        """
+        インストール状態の表示
+        """
+        dialog = xbmcgui.Dialog()
+        title = 'Install WebDriver Status'
+        message = 'Browser:\n'
+        if CWebDriverInstaller.is_chrome_browser_installed():
+            message += 'Ready'
+        else:
+            message += 'Not ready'
+        message += '\n\n'
+        message += 'Web Driver:\n'
+        if CWebDriverInstaller.is_web_driver_installed():
+            message += 'Ready'
+        else:
+            message += 'Not ready'
+        dialog.ok(title, message)

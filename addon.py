@@ -13,4 +13,4 @@ if __name__ == '__main__':
         cwebdriverinstaller.CWebDriverInstallerHelper.uninstall()
     else:
         xbmcaddon.Addon().openSettings()
-
+        cwebdriverinstaller.CWebDriverInstallerHelper.status()
