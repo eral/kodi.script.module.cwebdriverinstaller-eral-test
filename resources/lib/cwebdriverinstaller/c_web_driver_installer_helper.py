@@ -13,7 +13,7 @@ class CWebDriverInstallerHelper():
         """
 
     @ staticmethod
-    def install_or_upgrade(update_cb=None):
+    def install_or_upgrade():
         # type: () -> None
         """
         WebDriverのインストール(orアップグレード)
