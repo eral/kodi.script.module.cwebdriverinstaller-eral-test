@@ -130,10 +130,12 @@ class CWebDriverInstaller():
         iscanceled = False
         arg = [installer_path, install_dir_path, chrome_browser_path, temp_dir_path]
         proc = subprocess.Popen(arg, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        lastDisplayLine = None
         while True:
             line = proc.stdout.readline()
             if line:
                 # 表示テキストがあるなら
+                lastDisplayLine = line
                 if update_cb is not None:
                     if milestones[count_of_achieve_milestones
                                   ].search(line) is not None:
@@ -146,7 +148,7 @@ class CWebDriverInstaller():
                 if proc.returncode != 0:
                     arg_str = string.join(['\''+i+'\'' for i in arg], ' ')
                     raise subprocess.CalledProcessError(
-                        proc.returncode, arg_str, output=line)
+                        proc.returncode, arg_str, output=lastDisplayLine)
                 break
             elif iscanceled:
                 # キャンセル要望なら
