@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 # from __future__ import annotations
 import os
 import sys
+import string
 import subprocess
 import json
 import re
@@ -127,10 +128,8 @@ class CWebDriverInstaller():
             subprocess.check_call(['chmod', '+x', installer_path])
         # 実行
         iscanceled = False
-        proc = subprocess.Popen(
-            [installer_path, install_dir_path,
-                chrome_browser_path, temp_dir_path],
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        arg = [installer_path, install_dir_path, chrome_browser_path, temp_dir_path]
+        proc = subprocess.Popen(arg, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         while True:
             line = proc.stdout.readline()
             if line:
@@ -145,8 +144,9 @@ class CWebDriverInstaller():
             elif proc.poll() is not None:
                 # 終了しているなら
                 if proc.returncode != 0:
+                    arg_str = string.join(['\''+i+'\'' for i in arg], ' ')
                     raise subprocess.CalledProcessError(
-                        proc.returncode, proc.cmd, output=line)
+                        proc.returncode, arg_str, output=line)
                 break
             elif iscanceled:
                 # キャンセル要望なら
