@@ -142,17 +142,18 @@ class CWebDriverInstaller():
                         count_of_achieve_milestones += 1
                     progress = count_of_achieve_milestones * \
                         100 / len(milestones)
-                    update_cb(progress, line)
+                    if update_cb(progress, line):
+                        # キャンセル要望なら
+                        if not iscanceled:
+                            # まだキャンセルが発行されていないなら
+                            proc.terminate()
+                            iscanceled = True
             elif proc.poll() is not None:
                 # 終了しているなら
                 if proc.returncode != 0:
                     arg_str = string.join(['\''+i+'\'' for i in arg], ' ')
                     raise subprocess.CalledProcessError(
                         proc.returncode, arg_str, output=lastDisplayLine)
-                break
-            elif iscanceled:
-                # キャンセル要望なら
-                proc.terminate()
                 break
 
     @ staticmethod
