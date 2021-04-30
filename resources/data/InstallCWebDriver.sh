@@ -9,8 +9,9 @@ how_to_usage() {
 
 install() {
 	export BROWSER_PATH=$(readlink -f "$2")
-	if [ ! -f ${BROWSER_PATH} ]; then
+	if [ ! -f "${BROWSER_PATH}" ]; then
 		echo error, chrome not found.
+		exit 101
 	fi
 
 	if [ "$3" = "" ]; then
