@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import subprocess
 import xbmcgui
 from .c_web_driver_installer import CWebDriverInstaller
+from .browser_not_installed_error import BrowserNotInstalledError
 
 
 class CWebDriverInstallerHelper():
@@ -19,8 +20,7 @@ class CWebDriverInstallerHelper():
         """
         WebDriverのインストール(orアップグレード)
         """
-        returncode = 0
-        returnmessage = None
+        exception = None
         progress_bar = xbmcgui.DialogProgress()
         progress_bar.create('Install WebDriver', 'starting...')
         try:
@@ -28,18 +28,23 @@ class CWebDriverInstallerHelper():
                 progress_bar.update(progress, message),
                 progress_bar.iscanceled()
             ][-1])
+        except BrowserNotInstalledError as e:
+            exception = e
         except subprocess.CalledProcessError as e:
-            returncode = e.returncode
-            returnmessage = e.output
+            exception = e
         finally:
             progress_bar.close()
         dialog = xbmcgui.Dialog()
         title = 'Install WebDriver'
-        if returnmessage is None:
+        if exception is None:
             message = 'WebDriverをインストールしました。'
             dialog.notification(title, message, xbmcgui.NOTIFICATION_INFO, 5000)
+        if isinstance(exception, BrowserNotInstalledError):
+            message = 'WebDriverのインストールに失敗しました。\nブラウザの準備が出来ていません。\n\n' \
+                + 'ReturnCode: ' + unicode(exception.returncode) + '\n' + exception.output
+            dialog.ok(title, message)
         else:
-            message = 'ReturnCode: ' + unicode(returncode) + '\n\n' + returnmessage
+            message = 'ReturnCode: ' + unicode(exception.returncode) + '\n' + exception.output
             dialog.ok(title, message)
 
     @ staticmethod

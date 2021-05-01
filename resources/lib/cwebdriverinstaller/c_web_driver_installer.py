@@ -9,6 +9,7 @@ import subprocess
 import json
 import re
 import xbmcaddon
+from .browser_not_installed_error import BrowserNotInstalledError
 
 
 class CWebDriverInstaller():
@@ -150,10 +151,12 @@ class CWebDriverInstaller():
                             iscanceled = True
             elif proc.poll() is not None:
                 # 終了しているなら
-                if proc.returncode != 0:
+                if proc.returncode == CWebDriverInstaller.__BROWSER_NOT_INSTALLED_RETURN_CODE:
                     arg_str = string.join(['\''+i+'\'' for i in arg], ' ')
-                    raise subprocess.CalledProcessError(
-                        proc.returncode, arg_str, output=lastDisplayLine)
+                    raise BrowserNotInstalledError(proc.returncode, arg_str, output=lastDisplayLine)
+                elif proc.returncode != 0:
+                    arg_str = string.join(['\''+i+'\'' for i in arg], ' ')
+                    raise subprocess.CalledProcessError(proc.returncode, arg_str, output=lastDisplayLine)
                 break
 
     @ staticmethod
@@ -176,6 +179,12 @@ class CWebDriverInstaller():
     # type: str
     """
     自身のアドオン
+    """
+
+    __BROWSER_NOT_INSTALLED_RETURN_CODE = 101
+    # type: int
+    """
+    ブラウザ未インストールエラーのリターンコード
     """
 
     @ staticmethod
