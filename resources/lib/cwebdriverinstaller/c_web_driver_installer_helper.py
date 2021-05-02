@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 # from __future__ import annotations
 import subprocess
+import xbmc
 import xbmcgui
 from .c_web_driver_installer import CWebDriverInstaller
 from .browser_not_installed_error import BrowserNotInstalledError
@@ -39,10 +40,11 @@ class CWebDriverInstallerHelper():
         if exception is None:
             message = 'WebDriverをインストールしました。'
             dialog.notification(title, message, xbmcgui.NOTIFICATION_INFO, 5000)
-        if isinstance(exception, BrowserNotInstalledError):
-            message = 'WebDriverのインストールに失敗しました。\nブラウザの準備が出来ていません。\n\n' \
+        elif isinstance(exception, BrowserNotInstalledError):
+            message = 'WebDriverのインストールに失敗しました。\nブラウザの準備が出来ていません。\nブラウザの準備を行いますか？。\n' \
                 + 'ReturnCode: ' + unicode(exception.returncode) + '\n' + exception.output
-            dialog.ok(title, message)
+            if dialog.yesno(title, message, yeslabel="Go to the browser", nolabel="No"):
+                xbmc.executebuiltin('RunAddon(' + CWebDriverInstaller.chrome_browser_addon_id() + ')')
         else:
             message = 'ReturnCode: ' + unicode(exception.returncode) + '\n' + exception.output
             dialog.ok(title, message)
