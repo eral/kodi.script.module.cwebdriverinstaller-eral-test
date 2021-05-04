@@ -16,6 +16,22 @@ class CWebDriverInstallerHelper():
         """
 
     @ staticmethod
+    def append_import_path():
+        # type: () -> bool
+        """
+        WebDriverをインポート出来る様に検索パスを追加する
+        ブラウザ・WebDriverの準備が整っていない場合は準備を行う
+
+        Returns
+        -------
+        result : bool
+            True:追加成功, False:失敗(未インストール)
+        """
+        if not CWebDriverInstaller.is_web_driver_installed():
+            CWebDriverInstallerHelper.install_or_upgrade()
+        return CWebDriverInstaller.append_import_path()
+
+    @ staticmethod
     def install_or_upgrade():
         # type: () -> None
         """
