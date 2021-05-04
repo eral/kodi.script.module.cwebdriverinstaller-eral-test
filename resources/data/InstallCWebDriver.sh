@@ -35,6 +35,29 @@ install() {
 
 	python -m pip install selenium --no-cache-dir --upgrade --target "${INSTALL_DIR}" --log "${TEMP_DIR}/install-selenium.log"
 	export BROWSER_VERSION=$("${BROWSER_PATH}" --version | sed -r 's/[^0-9]+([0-9]+\.[0-9]+).+/\1/g')
+	if [ "${BROWSER_VERSION}" = "" ]; then
+		# Immediately after installing the browser, the library path may not add, so add it manually
+		export BROWSER_LIBRARY_PATH=${BROWSER_PATH}
+		while :
+		do
+			export BROWSER_LIBRARY_PATH=$(dirname "${BROWSER_LIBRARY_PATH}")
+			echo "${BROWSER_LIBRARY_PATH}"
+			sleep 3
+			if [ -d "${BROWSER_LIBRARY_PATH}/lib" ]; then
+				export LD_LIBRARY_PATH=${BROWSER_LIBRARY_PATH}/lib:$LD_LIBRARY_PATH
+				export BROWSER_VERSION=$("${BROWSER_PATH}" --version | sed -r 's/[^0-9]+([0-9]+\.[0-9]+).+/\1/g')
+				break
+			fi
+			if [ "${BROWSER_LIBRARY_PATH}" = "/" ]; then
+				echo error, failed to identify browser version.
+				exit 102
+			fi
+		done
+	fi
+	if [ "${BROWSER_VERSION}" = "" ]; then
+		echo error, failed to identify browser version.
+		exit 103
+	fi
 	python -m pip install chromedriver-binary~=${BROWSER_VERSION} --no-cache-dir --upgrade --target "${INSTALL_DIR}" --log "${TEMP_DIR}/install-chromedriver.log"
 }
 
