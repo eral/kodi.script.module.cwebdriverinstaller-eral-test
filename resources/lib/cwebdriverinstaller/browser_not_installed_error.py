@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-# from __future__ import annotations
-import subprocess
+from __future__ import annotations
+from subprocess import CalledProcessError
 
 
-class BrowserNotInstalledError(subprocess.CalledProcessError):
+class BrowserNotInstalledError(CalledProcessError):
     def __init__(self, returncode, cmd, output=None):
         """
         コンストラクタ
         """
-        super(BrowserNotInstalledError, self).__init__(returncode, cmd, output)
+        super().__init__(returncode, cmd, output)

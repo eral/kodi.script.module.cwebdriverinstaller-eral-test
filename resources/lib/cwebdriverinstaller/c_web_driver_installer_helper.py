@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-# from __future__ import annotations
+from __future__ import annotations
 import subprocess
 import xbmc
 import xbmcgui
@@ -16,8 +13,7 @@ class CWebDriverInstallerHelper():
         """
 
     @ staticmethod
-    def append_import_path():
-        # type: () -> bool
+    def append_import_path() -> bool:
         """
         WebDriverをインポート出来る様に検索パスを追加する
         ブラウザ・WebDriverの準備が整っていない場合は準備を行う
@@ -32,8 +28,7 @@ class CWebDriverInstallerHelper():
         return CWebDriverInstaller.append_import_path()
 
     @ staticmethod
-    def install_or_upgrade():
-        # type: () -> None
+    def install_or_upgrade() -> None:
         """
         WebDriverのインストール(orアップグレード)
         """
@@ -58,16 +53,15 @@ class CWebDriverInstallerHelper():
             dialog.notification(title, message, xbmcgui.NOTIFICATION_INFO, 5000)
         elif isinstance(exception, BrowserNotInstalledError):
             message = 'WebDriverのインストールに失敗しました。\nブラウザの準備が出来ていません。\nブラウザの準備を行いますか？。\n' \
-                + 'ReturnCode: ' + unicode(exception.returncode) + '\n' + exception.output
+                + 'ReturnCode: ' + str(exception.returncode) + '\n' + exception.output
             if dialog.yesno(title, message, yeslabel="Go to the browser", nolabel="No"):
                 xbmc.executebuiltin('RunAddon(' + CWebDriverInstaller.chrome_browser_addon_id() + ')')
         else:
-            message = 'ReturnCode: ' + unicode(exception.returncode) + '\n' + exception.output
+            message = 'ReturnCode: ' + str(exception.returncode) + '\n' + exception.output
             dialog.ok(title, message)
 
     @ staticmethod
-    def uninstall():
-        # type: () -> None
+    def uninstall() -> None:
         """
         WebDriverのアンインストール
         """
@@ -84,12 +78,11 @@ class CWebDriverInstallerHelper():
             message = 'WebDriverをアンインストールしました。'
             dialog.notification(title, message, xbmcgui.NOTIFICATION_INFO, 5000)
         else:
-            message = 'ReturnCode: ' + unicode(returncode) + '\n\n' + returnmessage
+            message = 'ReturnCode: ' + str(returncode) + '\n\n' + returnmessage
             dialog.ok(title, message)
 
     @ staticmethod
-    def status():
-        # type: () -> None
+    def status() -> None:
         """
         インストール状態の表示
         """

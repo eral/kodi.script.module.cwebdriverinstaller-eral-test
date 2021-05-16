@@ -8,19 +8,9 @@
 		"Downloading wheel",
 		"Installing collected packages: .*pip",
 		"Successfully installed .*pip",
-		"Collecting selenium",
-		"Downloading selenium",
-		"Installing collected packages: .*selenium",
-		"Successfully installed .*selenium",
-		"Collecting chromedriver-binary",
-		"Downloading chromedriver-binary",
-		"Building wheels for collected packages: chromedriver-binary",
-		"Building wheel for chromedriver-binary [^:]*: started",
-		"Building wheel for chromedriver-binary [^:]*: finished",
-		"Created wheel for chromedriver-binary:",
-		"Stored in directory:",
-		"Successfully built chromedriver-binary",
-		"Installing collected packages: .*chromedriver-binary",
-		"Successfully installed .*chromedriver-binary"
+		"Collecting pyppeteer",
+		"Downloading pyppeteer",
+		"Installing collected packages: .*pyppeteer",
+		"Successfully installed .*pyppeteer"
 	]
 }
