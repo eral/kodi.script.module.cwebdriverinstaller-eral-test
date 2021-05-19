@@ -1,11 +1,8 @@
 {
 	"milestones":[
+		"get-pip.py",
 		"Collecting pip",
 		"Downloading pip",
-		"Collecting setuptools",
-		"Downloading setuptools",
-		"Collecting wheel",
-		"Downloading wheel",
 		"Installing collected packages: .*pip",
 		"Successfully installed .*pip",
 		"Collecting pyppeteer",

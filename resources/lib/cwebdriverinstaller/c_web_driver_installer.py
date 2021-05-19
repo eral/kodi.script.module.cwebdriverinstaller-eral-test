@@ -80,7 +80,7 @@ class CWebDriverInstaller():
             try:
                 chrome_browser_addon_id = 'browser.chrome'
                 chrome_browser_addon = xbmcaddon.Addon(chrome_browser_addon_id)
-                result = chrome_browser_addon.getAddonInfo('path') + '/chrome-bin/chrome'
+                result = chrome_browser_addon.getAddonInfo('path') + 'chrome-bin/chrome'
             except RuntimeError as e:
                 if str(e).startswith('Unknown addon id'):
                     pass
@@ -93,8 +93,7 @@ class CWebDriverInstaller():
                 for exec_file_name in exec_file_names:
                     which_result = subprocess.run(['which', exec_file_name], capture_output=True)
                     if which_result.returncode == 0:
-                        result = which_result.stdout.decode()
-                        result = result[0:-1]  # 末端の改行除去
+                        result = which_result.stdout.decode().rstrip()
                         break
             if result is None:
                 # 決め打ち検索
@@ -144,7 +143,8 @@ class CWebDriverInstaller():
             line = proc.stdout.readline()
             if line:
                 # 表示テキストがあるなら
-                line = line.decode()
+                line = line.decode().rstrip()
+                print('line: ' + line)
                 lastDisplayLine = line
                 if update_cb is not None:
                     if milestones[count_of_achieve_milestones].search(line) is not None:
@@ -201,7 +201,7 @@ class CWebDriverInstaller():
         result : str
             インストールスクリプトのパス
         """
-        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + '/resources/data/InstallCWebDriver.sh'
+        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + 'resources/data/InstallCWebDriver.sh'
 
     @ staticmethod
     def __installer_meta_path() -> str:
@@ -213,7 +213,7 @@ class CWebDriverInstaller():
         result : str
             インストール用メタファイル
         """
-        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + '/resources/data/InstallCWebDriver.meta.json'
+        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + 'resources/data/InstallCWebDriver.meta.json'
 
     @ staticmethod
     def __install_dir_path() -> str:
@@ -225,7 +225,7 @@ class CWebDriverInstaller():
         result : str
             インストールディレクトリのパス
         """
-        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + '/resources/site-packages/'
+        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + 'resources/site-packages/'
 
     @ staticmethod
     def __temp_dir_path() -> str:
@@ -237,4 +237,4 @@ class CWebDriverInstaller():
         result : str
             作業ディレクトリパス
         """
-        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + '/temp/'
+        return CWebDriverInstaller.__ADDON.getAddonInfo('path') + 'temp/'
