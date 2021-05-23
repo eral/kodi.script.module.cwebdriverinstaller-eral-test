@@ -2,13 +2,11 @@ from __future__ import annotations
 from typing import Callable
 import os
 import sys
-import string
 import shlex
 import subprocess
 import json
 import re
 import xbmcaddon
-from xbmcgui import KEY_BUTTON_RIGHT_ANALOG_TRIGGER
 from .browser_not_installed_error import BrowserNotInstalledError
 
 
@@ -178,8 +176,7 @@ class CWebDriverInstaller():
         """
         install_dir_path = CWebDriverInstaller.__install_dir_path()
 
-        subprocess.check_output(
-            ['rm', '-rf', install_dir_path])
+        subprocess.check_output(['rm', '-rf', install_dir_path])
 
     __ADDON: str = xbmcaddon.Addon('script.module.cwebdriverinstaller-eral-test')
     """
