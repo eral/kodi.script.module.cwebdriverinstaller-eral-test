@@ -1,16 +1,14 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
+#!/usr/bin/env python3
+from __future__ import annotations
 import sys
 import xbmcaddon
-import resources.lib.cwebdriverinstaller as cwebdriverinstaller
+from resources.lib.cwebdriverinstaller import CWebDriverInstallerHelper
 
 if __name__ == '__main__':
     if (1 < len(sys.argv)) and (sys.argv[1] == 'install_or_upgrade_web_driver'):
-        cwebdriverinstaller.CWebDriverInstallerHelper.install_or_upgrade()
+        CWebDriverInstallerHelper.install_or_upgrade()
     elif (1 < len(sys.argv)) and (sys.argv[1] == 'uninstall_web_driver'):
-        cwebdriverinstaller.CWebDriverInstallerHelper.uninstall()
+        CWebDriverInstallerHelper.uninstall()
     else:
         xbmcaddon.Addon().openSettings()
-        cwebdriverinstaller.CWebDriverInstallerHelper.status()
+        CWebDriverInstallerHelper.status()
