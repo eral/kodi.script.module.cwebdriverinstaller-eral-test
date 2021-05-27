@@ -76,22 +76,35 @@ class CWebDriverInstaller():
         result : str
             Chromeブラウザのパス
         """
-        chrome_browser_addon_id = CWebDriverInstaller.chrome_browser_addon_id()
-        result = xbmcaddon.Addon(chrome_browser_addon_id).getAddonInfo('path') + '/chrome-bin/chrome'
-        return result
-
-    @ staticmethod
-    def chrome_browser_addon_id():
-        # type: () -> str
-        """
-        ChromeブラウザアドオンのID
-
-        Returns
-        -------
-        result : str
-            ChromeブラウザアドオンのID
-        """
-        result = xbmcaddon.Addon('browser.chrome').getAddonInfo('id')
+        result = None
+        if result is None:
+            # ブラウザアドオンを検索
+            try:
+                chrome_browser_addon_id = 'browser.chrome'
+                chrome_browser_addon = xbmcaddon.Addon(chrome_browser_addon_id)
+                result = chrome_browser_addon.getAddonInfo('path') + '/chrome-bin/chrome'
+            except RuntimeError as e:
+                if str(e).startswith('Unknown addon id'):
+                    pass
+                else:
+                    raise
+        if result is None:
+            exec_file_names = ['google-chrome', 'chromium', 'chrome']
+            if result is None:
+                # whichで検索
+                for exec_file_name in exec_file_names:
+                    try:
+                        result = subprocess.check_output(['which', exec_file_name]).rstrip()
+                        break
+                    except subprocess.CalledProcessError as e:
+                        pass
+            if result is None:
+                # 決め打ち検索
+                for exec_file_name in exec_file_names:
+                    exec_file_path = '/usr/bin/' + exec_file_name
+                    if os.path.isfile(exec_file_path):
+                        result = exec_file_path
+                        break
         return result
 
     @ staticmethod

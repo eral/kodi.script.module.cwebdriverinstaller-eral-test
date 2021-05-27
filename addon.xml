@@ -2,7 +2,7 @@
 <addon id="script.module.cwebdriverinstaller-eral-test" name="Chrome Web Driver Installer (ERAL-test)" version="0.0.1" provider-name="ERAL">
 	<requires>
 		<import addon="xbmc.python" version="2.26.0" />
-		<import addon="browser.chrome" version="9.2.0.104" />
+		<import addon="browser.chrome" version="9.2.0.104" optional="true" />
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py">
 		<provides>executable</provides>
