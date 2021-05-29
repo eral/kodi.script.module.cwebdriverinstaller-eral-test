@@ -27,7 +27,7 @@ class CWebDriverInstallerHelper():
         result : bool
             True:追加成功, False:失敗(未インストール)
         """
-        if not CWebDriverInstaller.is_web_driver_installed():
+        if not CWebDriverInstaller.is_installed():
             CWebDriverInstallerHelper.install_or_upgrade()
         return CWebDriverInstaller.append_import_path()
 
@@ -95,14 +95,20 @@ class CWebDriverInstallerHelper():
         """
         dialog = xbmcgui.Dialog()
         title = 'Install WebDriver Status'
-        message = 'Browser:\n'
-        if CWebDriverInstaller.is_chrome_browser_installed():
+        message = 'Selenium: '
+        if CWebDriverInstaller.is_installed():
             message += 'Ready'
         else:
             message += 'Not ready'
-        message += '\n\n'
-        message += 'Web Driver:\n'
-        if CWebDriverInstaller.is_web_driver_installed():
+        message += '\n'
+        message += 'Driver  : '
+        if CWebDriverInstaller.is_chrome_driver_installed():
+            message += 'Ready'
+        else:
+            message += 'Not ready'
+        message += '\n'
+        message += 'Browser : '
+        if CWebDriverInstaller.is_chrome_browser_installed():
             message += 'Ready'
         else:
             message += 'Not ready'

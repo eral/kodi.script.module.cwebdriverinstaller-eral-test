@@ -19,6 +19,21 @@ class CWebDriverInstaller():
         """
 
     @ staticmethod
+    def is_installed():
+        # type: () -> bool
+        """
+        インストール確認
+
+        Returns
+        -------
+        result : bool
+            True:インストール済み, False:未インストール
+        """
+        install_dir_path = CWebDriverInstaller.__install_dir_path()
+        result = os.path.isdir(install_dir_path)
+        return result
+
+    @ staticmethod
     def append_import_path():
         # type: () -> bool
         """
@@ -29,25 +44,62 @@ class CWebDriverInstaller():
         result : bool
             True:追加成功, False:失敗(未インストール)
         """
-        if not CWebDriverInstaller.is_web_driver_installed():
-            return False
         install_dir_path = CWebDriverInstaller.__install_dir_path()
         sys.path.append(install_dir_path)
-        return True
+        result = os.path.isdir(install_dir_path)
+        return result
 
     @ staticmethod
-    def is_web_driver_installed():
+    def is_chrome_driver_installed():
         # type: () -> bool
         """
-        WebDriverのインストール確認
+        Chromeブラウザのインストール確認
 
         Returns
         -------
         result : bool
             True:インストール済み, False:未インストール
         """
-        install_dir_path = CWebDriverInstaller.__install_dir_path()
-        result = os.path.isdir(install_dir_path)
+        result = False
+        chrome_driver_path = CWebDriverInstaller.chrome_driver_path()
+        if chrome_driver_path is not None:
+            result = os.path.isfile(chrome_driver_path)
+        return result
+
+    @ staticmethod
+    def chrome_driver_path():
+        # type: () -> str
+        """
+        Chromeブラウザのパス
+
+        Returns
+        -------
+        result : str
+            Chromeブラウザのパス
+        """
+        result = None
+        if result is None:
+            # 自アドオンを検索
+            exec_file_path = CWebDriverInstaller.__install_dir_path() + '/chromedriver_binary/chromedriver'
+            if os.path.isfile(exec_file_path):
+                result = exec_file_path
+        if result is None:
+            exec_file_names = ['chromedriver']
+            if result is None:
+                # whichで検索
+                for exec_file_name in exec_file_names:
+                    try:
+                        result = subprocess.check_output(['which', exec_file_name]).rstrip()
+                        break
+                    except subprocess.CalledProcessError as e:
+                        pass
+            if result is None:
+                # 決め打ち検索
+                for exec_file_name in exec_file_names:
+                    exec_file_path = '/usr/bin/' + exec_file_name
+                    if os.path.isfile(exec_file_path):
+                        result = exec_file_path
+                        break
         return result
 
     @ staticmethod
@@ -61,8 +113,10 @@ class CWebDriverInstaller():
         result : bool
             True:インストール済み, False:未インストール
         """
+        result = False
         chrome_browser_path = CWebDriverInstaller.chrome_browser_path()
-        result = os.path.isfile(chrome_browser_path)
+        if chrome_browser_path is not None:
+            result = os.path.isfile(chrome_browser_path)
         return result
 
     @ staticmethod
