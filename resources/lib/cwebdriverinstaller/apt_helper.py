@@ -58,7 +58,7 @@ class AptHelper():
     def __exec_with_dialog(cmd, progress_bar_title, succeed_message, failed_message):
         # type: (str, str, str, str) -> None
         """
-        パッケージのアンインストール
+        コマンド実行
         """
         exception = None
         progress_bar = xbmcgui.DialogProgress()
