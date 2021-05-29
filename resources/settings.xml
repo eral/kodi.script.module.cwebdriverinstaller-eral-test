@@ -3,5 +3,12 @@
 	<category label="30901">
 		<setting label="30902" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, install_or_upgrade_web_driver)"/>
 		<setting label="30903" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, uninstall_web_driver)"/>
+		<setting type="sep"/>
+		<setting label="30904" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, install_apt_chromium)"/>
+		<setting label="30905" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, uninstall_apt_chromium)"/>
+		<setting label="30906" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, install_apt_chromedriver)"/>
+		<setting label="30907" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, uninstall_apt_chromedriver)"/>
+		<setting label="30908" type="bool" id="sudoapt" default="false"/>
+		<setting label="30909" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, update_apt)"/>
 	</category>
 </settings>

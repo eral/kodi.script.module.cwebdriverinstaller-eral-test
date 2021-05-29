@@ -30,6 +30,30 @@ msgctxt "#30903"
 msgid "Uninstall the web driver"
 msgstr "Webドライバのアンインストール"
 
+msgctxt "#30904"
+msgid "Install chromium with apt"
+msgstr "Chromiumをaptでインストール"
+
+msgctxt "#30905"
+msgid "Uninstall chromium with apt"
+msgstr "Chromiumをaptでアンインストール"
+
+msgctxt "#30906"
+msgid "Install chrome driver with apt"
+msgstr "ChromeDriverをaptでインストール"
+
+msgctxt "#30907"
+msgid "Uninstall chrome driver with apt"
+msgstr "ChromeDriverをaptでアンインストール"
+
+msgctxt "#30908"
+msgid "apt with super user"
+msgstr "aptをスーパーユーザーで操作する"
+
+msgctxt "#30909"
+msgid "Update apt "
+msgstr "aptをアップデート"
+
 # strings 31000 thru 31999 reserved for skins
 # strings 32000 thru 32999 reserved for scripts
 # strings 33000 thru 33999 reserved for common strings used in add-ons
