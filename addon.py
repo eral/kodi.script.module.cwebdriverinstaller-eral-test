@@ -28,6 +28,9 @@ if __name__ == '__main__':
         sudoapt = xbmcaddon.Addon().getSettingBool('sudoapt')
         cwebdriverinstaller.AptHelper.update(sudoapt)
 
+    elif (1 < len(sys.argv)) and (sys.argv[1] == 'transplant_libwidevine_from_chromium_me'):
+        cwebdriverinstaller.WidevineHelper.transplant_libwidevine()
+
     else:
         xbmcaddon.Addon().openSettings()
         cwebdriverinstaller.CWebDriverInstallerHelper.status()

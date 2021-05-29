@@ -54,6 +54,10 @@ msgctxt "#30909"
 msgid "Update apt "
 msgstr "aptをアップデート"
 
+msgctxt "#30910"
+msgid "Transplant the Widevine library from Chromium (Media Edition)"
+msgstr "WidevineライブラリをChromium (Media Edition)から移植"
+
 # strings 31000 thru 31999 reserved for skins
 # strings 32000 thru 32999 reserved for scripts
 # strings 33000 thru 33999 reserved for common strings used in add-ons

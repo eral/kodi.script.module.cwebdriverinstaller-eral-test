@@ -10,5 +10,7 @@
 		<setting label="30907" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, uninstall_apt_chromiumdriver)"/>
 		<setting label="30908" type="bool" id="sudoapt" default="false"/>
 		<setting label="30909" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, update_apt)"/>
+		<setting type="sep"/>
+		<setting label="30910" type="action" action="RunScript(script.module.cwebdriverinstaller-eral-test, transplant_libwidevine_from_chromium_me)"/>
 	</category>
 </settings>
