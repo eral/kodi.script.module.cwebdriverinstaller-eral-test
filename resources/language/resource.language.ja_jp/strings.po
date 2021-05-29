@@ -39,12 +39,12 @@ msgid "Uninstall chromium with apt"
 msgstr "Chromiumをaptでアンインストール"
 
 msgctxt "#30906"
-msgid "Install chrome driver with apt"
-msgstr "ChromeDriverをaptでインストール"
+msgid "Install chromium driver with apt"
+msgstr "ChromiumDriverをaptでインストール"
 
 msgctxt "#30907"
-msgid "Uninstall chrome driver with apt"
-msgstr "ChromeDriverをaptでアンインストール"
+msgid "Uninstall chromium driver with apt"
+msgstr "ChromiumDriverをaptでアンインストール"
 
 msgctxt "#30908"
 msgid "apt with super user"

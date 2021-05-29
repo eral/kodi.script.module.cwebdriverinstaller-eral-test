@@ -18,12 +18,12 @@ if __name__ == '__main__':
     elif (1 < len(sys.argv)) and (sys.argv[1] == 'uninstall_apt_chromium'):
         sudoapt = xbmcaddon.Addon().getSettingBool('sudoapt')
         cwebdriverinstaller.AptHelper.uninstall('chromium', sudoapt)
-    elif (1 < len(sys.argv)) and (sys.argv[1] == 'install_apt_chromedriver'):
+    elif (1 < len(sys.argv)) and (sys.argv[1] == 'install_apt_chromiumdriver'):
         sudoapt = xbmcaddon.Addon().getSettingBool('sudoapt')
-        cwebdriverinstaller.AptHelper.install('chromedriver', sudoapt)
-    elif (1 < len(sys.argv)) and (sys.argv[1] == 'uninstall_apt_chromedriver'):
+        cwebdriverinstaller.AptHelper.install('chromium-driver', sudoapt)
+    elif (1 < len(sys.argv)) and (sys.argv[1] == 'uninstall_apt_chromiumdriver'):
         sudoapt = xbmcaddon.Addon().getSettingBool('sudoapt')
-        cwebdriverinstaller.AptHelper.uninstall('chromedriver', sudoapt)
+        cwebdriverinstaller.AptHelper.uninstall('chromium-driver', sudoapt)
     elif (1 < len(sys.argv)) and (sys.argv[1] == 'update_apt'):
         sudoapt = xbmcaddon.Addon().getSettingBool('sudoapt')
         cwebdriverinstaller.AptHelper.update(sudoapt)
